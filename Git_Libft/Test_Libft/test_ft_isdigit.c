@@ -22,6 +22,8 @@ int main(void)
 	printf("\n");
 	printf("%d", ft_isdigit(49));
 	printf("\n");
+	printf("%d", ft_isdigit(65));
+	printf("\n");
 	
 	printf("---------------------------------------------\n");
 
@@ -30,4 +32,7 @@ int main(void)
 	printf("%d", ft_isdigit('V'));
 	printf("\n");
 	printf("%d", ft_isdigit(49));
+	printf("\n");
+	printf("%d", ft_isdigit(65));
+	printf("\n");
 }
