@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 13:32:19 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/10 15:32:31 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:36:14 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ int			ft_tolower( int c);
 int			ft_toupper(int c);
 size_t		strlen(const char *s);
 size_t		strlcpy(char *dst, const char *src, size_t size);
+int 		ft_atoi(const char *nptr);
+void		*ft_bzero(void *s, size_t n);
 
 #endif
