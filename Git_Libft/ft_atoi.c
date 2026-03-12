@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 18:46:35 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/11 15:06:51 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/12 14:15:38 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi(const char *nptr)
 			sign *= -1;
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (ft_isdigit(nptr[i]))
 	{
 		num = (num * 10) + (nptr[i] - '0');
 		i++;
