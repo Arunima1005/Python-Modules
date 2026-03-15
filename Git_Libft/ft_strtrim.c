@@ -22,9 +22,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	start = 0;
 	end = ft_strlen(s1);
-	while (ft_strchr(set, s1[start]) && s1[start])
+	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-	while (ft_strchr(set, s1[end - 1]) && start < end)
+	while (end > start && ft_strchr(set, s1[end - 1]))
 		end--;
 	strtrim = ft_substr(s1, start, end - start);
 	if (!strtrim)
