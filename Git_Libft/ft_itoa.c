@@ -38,7 +38,7 @@ char	*ft_itoa(int n)
 	num = n;
 	if (num == 0)
 		return (ft_strdup("0"));
-	len = cal_len_num(n);
+	len = cal_len_num(num);
 	str = malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
