@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 18:28:51 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/11 18:32:57 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/16 10:33:33 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	p2 = s2;
 	while (n --)
 	{
-		if (*p1 != !p2)
+		if (*p1 != *p2)
 			return (*p1 - *p2);
 		p1++;
 		p2++;
