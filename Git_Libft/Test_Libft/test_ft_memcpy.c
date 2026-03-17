@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:30:03 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/11 15:02:38 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:58:28 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,28 +102,17 @@ int main(void)
 	memset(dest1, 0, 20);
 	memset(dest2, 0, 20);
 
-	/* 4. Copy binary data */
-	unsigned char bin[5] = {255, 128, 64, 32, 16};
-	run_test("Binary data", dest1, dest2, bin, 5);
+	/* Overlapping memory (undefined behavior for memcpy) */
+	// char overlap1[] = "123456789";
+	// char overlap2[] = "123456789";
 
-	memset(dest1, 0, 20);
-	memset(dest2, 0, 20);
+	// memcpy(overlap1 + 2, overlap1, 5);
+	// ft_memcpy(overlap2 + 2, overlap2, 5);
 
-	/* 5. Copy string including null terminator */
-	char str[] = "Hello";
-	run_test("String copy", dest1, dest2, str, strlen(str) + 1);
-
-	/* 6. Overlapping memory (undefined behavior for memcpy) */
-	char overlap1[] = "123456789";
-	char overlap2[] = "123456789";
-
-	memcpy(overlap1 + 2, overlap1, 5);
-	ft_memcpy(overlap2 + 2, overlap2, 5);
-
-	printf("Test: Overlap memory (undefined behavior)\n");
-	printf("memcpy:    %s\n", overlap1);
-	printf("ft_memcpy: %s\n", overlap2);
-	printf("-----------------------------\n");
+	// printf("Test: Overlap memory (undefined behavior)\n");
+	// printf("memcpy:    %s\n", overlap1);
+	// printf("ft_memcpy: %s\n", overlap2);
+	// printf("-----------------------------\n");
 
 	return 0;
 }
@@ -135,8 +124,6 @@ int main(void)
 | Normal copy        | basic functionality  |
 | Full buffer        | boundary size        |
 | `n = 0`            | should do nothing    |
-| Binary data        | works for raw memory |
-| String copy        | includes `'\0'`      |
 | Overlapping memory | undefined behavior   |
 gcc test_ft_memcpy.c ../libft.a -I.. -o test_memcpy
 

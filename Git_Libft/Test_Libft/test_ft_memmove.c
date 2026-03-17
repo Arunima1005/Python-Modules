@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 17:06:14 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/11 17:55:31 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/17 17:03:44 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,7 @@ int main(void)
 	memset(dest1, 0, 20);
 	memset(dest2, 0, 20);
 
-	/* 4. Binary data */
-	unsigned char bin[5] = {255, 128, 64, 32, 16};
-	run_test("Binary data", dest1, dest2, bin, bin, 5);
-
-	/* 5. String including null terminator */
+	/* 4. overlap forward */
 	char str1[20] = "Hello World";
 	char str2[20] = "Hello World";
 

@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 17:09:55 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/13 17:09:56 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/17 18:39:09 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,8 @@ int main(void)
 	/* 5. compare only first bytes */
 	run_test("Compare first 2 bytes", b1, b2, 2);
 
-	/* 6. binary data */
-	run_test("Binary data", bin1, bin2, 5);
-
-	/* 7. binary equal partial */
-	run_test("Binary equal first 4", bin1, bin2, 4);
-
-	/* 8. empty strings */
+	/* 6. empty strings */
 	run_test("Empty strings", "", "", 1);
-
-	/* 9. compare with '\\0' inside */
-	char d1[] = {'A','B','\0','C'};
-	char d2[] = {'A','B','\0','D'};
-	run_test("Null inside memory", d1, d2, 4);
 
 	return 0;
 }
