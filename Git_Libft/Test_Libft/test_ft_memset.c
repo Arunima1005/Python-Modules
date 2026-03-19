@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:44:44 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/17 16:18:02 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/11 13:54:02 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,84 +27,123 @@
 // }
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include "libft.h"
 
-/* Helper to compare memory */
-int compare_buffers(unsigned char *a, unsigned char *b, size_t n)
+void print_buffer(unsigned char *buf, size_t size)
 {
-	for (size_t i = 0; i < n; i++)
-	{
-		if (a[i] != b[i])
-			return (0);
-	}
-	return (1);
+    size_t i = 0;
+
+    while (i < size)
+    {
+        printf("%02X ", buf[i]);
+        i++;
+    }
+    printf("\n");
 }
 
-/* Helper to print memory */
-void print_buffer(unsigned char *buf, size_t n)
+void run_test(const char *name, unsigned char *b1, unsigned char *b2, int c, size_t n)
 {
-	for (size_t i = 0; i < n; i++)
-		printf("%c ", buf[i]);
-	printf("\n");
+    printf("Test: %s\n", name);
+
+    memset(b1, c, n);
+    ft_memset(b2, c, n);
+
+    printf("memset:    ");
+    print_buffer(b1, 20);
+
+    printf("ft_memset: ");
+    print_buffer(b2, 20);
+
+    if (memcmp(b1, b2, 20) == 0)
+        printf("Result: OK\n");
+    else
+        printf("Result: FAIL\n");
+
+    printf("------------------------------\n");
 }
 
-int	main(void)
+int main(void)
 {
-	printf("Testing ft_memset vs memset\n\n");
+    unsigned char buf1[20];
+    unsigned char buf2[20];
 
-	/* Test 1: Basic */
-	{
-		unsigned char a[10];
-		unsigned char b[10];
+    /* Initialize buffers */
+    memset(buf1, 'A', 20);
+    memset(buf2, 'A', 20);
 
-		ft_memset(a, 'A', 10);
-		memset(b, 'A', 10);
+    /* 1. Normal use */
+    run_test("Fill first 10 bytes", buf1, buf2, 'B', 10);
 
-		printf("Test 1 (fill with 'A'):\n");
-		print_buffer(a, 10);
-		printf(compare_buffers(a, b, 10) ? "OK\n\n" : "Mismatch\n\n");
-	}
+    memset(buf1, 'A', 20);
+    memset(buf2, 'A', 20);
 
-	/* Test 2: Zero fill */
-	{
-		unsigned char a[10];
-		unsigned char b[10];
+    /* 2. Fill whole buffer */
+    run_test("Fill full buffer", buf1, buf2, 'C', 20);
 
-		ft_memset(a, 0, 10);
-		memset(b, 0, 10);
+    memset(buf1, 'A', 20);
+    memset(buf2, 'A', 20);
 
-		printf("Test 2 (fill with 0):\n");
-		for (size_t i = 0; i < 10; i++)
-		printf("%d ", a[i]);
-        printf("\n");
-		printf(compare_buffers(a, b, 10) ? "OK\n\n" : "Mismatch\n\n");
-	}
+    /* 3. n = 0 */
+    run_test("n = 0", buf1, buf2, 'D', 0);
 
-	/* Test 3: Partial fill */
-	{
-		unsigned char a[10] = "abcdefghi";
-		unsigned char b[10] = "abcdefghi";
+    memset(buf1, 'A', 20);
+    memset(buf2, 'A', 20);
 
-		ft_memset(a, 'X', 5);
-		memset(b, 'X', 5);
+    /* 4. Fill with zero */
+    run_test("Fill with 0", buf1, buf2, 0, 15);
 
-		printf("Test 3 (partial overwrite):\n");
-		print_buffer(a, 10);
-		printf(compare_buffers(a, b, 10) ? "OK\n\n" : "Mismatch\n\n");
-	}
+    memset(buf1, 'A', 20);
+    memset(buf2, 'A', 20);
 
-	/* Test 4: n = 0 (should do nothing) */
-	{
-		unsigned char a[5] = "test";
-		unsigned char b[5] = "test";
-        size_t n = 0;
-		ft_memset(a, 'Z', n);
-		memset(b, 'Z', n);
+    /* 5. Value > 127 */
+    run_test("Value > 127", buf1, buf2, 200, 8);
 
-		printf("Test 4 (n = 0):\n");
-		print_buffer(a, 5);
-		printf(compare_buffers(a, b, 5) ? "OK\n\n" : "Mismatch\n\n");
-	}
-	return 0;
+    memset(buf1, 'A', 20);
+    memset(buf2, 'A', 20);
+
+    /* 6. Offset pointer */
+    printf("Test: Offset pointer\n");
+
+    memset(buf1 + 5, 'E', 5);
+    ft_memset(buf2 + 5, 'E', 5);
+
+    printf("memset:    ");
+    print_buffer(buf1, 20);
+
+    printf("ft_memset: ");
+    print_buffer(buf2, 20);
+
+    if (memcmp(buf1, buf2, 20) == 0)
+        printf("Result: OK\n");
+    else
+        printf("Result: FAIL\n");
+
+    printf("------------------------------\n");
+
+    /* 7. Large n smaller than buffer */
+    memset(buf1, 'A', 20);
+    memset(buf2, 'A', 20);
+
+    run_test("Large n inside buffer", buf1, buf2, 'Z', 18);
+
+    return 0;
 }
+
+//gcc test_ft_memset.c ../libft.a -I..
+
+
+
+/*
+
+| Case           | Why it's important             |
+| -------------- | ------------------------------ |
+| Normal use     | standard behavior              |
+| Full buffer    | boundary case                  |
+| `n = 0`        | function should do nothing     |
+| Fill with `0`  | common use to clear memory     |
+| `c > 127`      | verifies unsigned char casting |
+| Offset pointer | pointer arithmetic             |
+| Large `n`      | near boundary                  |
+
+
+*/

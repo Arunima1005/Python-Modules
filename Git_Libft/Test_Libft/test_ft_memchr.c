@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 17:09:36 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/17 18:36:36 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/13 17:09:37 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,16 @@ int main(void)
 
     /* 7. Empty string */
     test_case(empty, 'a', 1, "Empty string");
+
+    /* 8. Searching for '\\0' */
+    test_case(str, '\0', strlen(str) + 1, "Search null terminator");
+
+    /* 9. Binary data */
+    unsigned char data[] = {1, 2, 3, 4, 5};
+    test_case(data, 3, 5, "Binary data");
+
+    /* 10. Large n */
+    test_case(str, 'W', 100, "Large n");
 
     return 0;
 }
