@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 12:09:00 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/28 17:15:55 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/29 18:15:00 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "operation.h"
-
+//selection sort
 typedef struct	s_stack
 {
 	int	content;
+	int	index; // Required this for Chunk Based Algorithm
 	struct s_stack	*next;
 }	t_stack;
 

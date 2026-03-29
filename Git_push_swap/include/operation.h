@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:08:02 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/28 19:14:42 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/03/29 19:29:24 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ void ra(t_stack **a_stack, int *ops_count);
 void pb(t_stack **a_stack, t_stack **b_stack, int *ops_count);
 void pa(t_stack **a_stack, t_stack **b_stack, int *ops_count);
 void rra(t_stack **a_stack, int *ops_count);
+void rb(t_stack **b_stack, int *ops_count);
+void rrb(t_stack **b_stack, int *ops_count);
 
 # endif
