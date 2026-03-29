@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_puthex.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 11:30:20 by archowdh          #+#    #+#             */
+/*   Updated: 2026/03/24 13:13:11 by archowdh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int ft_printf_puthex(unsigned int n, char *base)
+int ft_printf_puthex(unsigned long n, char *base)
 {
-	//char *s;
     int count;
 
     count = 0;
@@ -11,10 +22,3 @@ int ft_printf_puthex(unsigned int n, char *base)
     count += ft_printf_putchar(base[n % 16]);    
 	return (count);
 }
-// #include <stdio.h>
-// int main(void)
-// {
-//     int count = 0;
-//     printf("\nHexa count = %d\n", ft_printf_puthex(255,"0123456789ABCDEF"));
-//     //ft_printf_puthex(48879,"0123456789ABCDEF");
-// }

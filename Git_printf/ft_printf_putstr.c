@@ -1,15 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_putstr.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 11:29:16 by archowdh          #+#    #+#             */
+/*   Updated: 2026/03/24 17:08:56 by archowdh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int ft_printf_putstr(char *s)
 {
-	//write(1,&c,1);
-    int i;
-     
-    i = 0;
-    while (s[i])
+    if (!s)
     {
-        ft_putchar_fd(s[i],1);
-        i++;
+        ft_putstr_fd("(null)", 1);
+        return (6);
     }
-	return (i);
+    ft_putstr_fd(s, 1);
+	return ((int)ft_strlen(s));
 }
