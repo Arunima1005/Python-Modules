@@ -15,6 +15,10 @@ int main(int argc, char **argv)
 {
 	int i = 1;
 	int j = 0;
+
+	if (argc == 1)
+		write(1, "\n", 1);
+
 	while (i < argc)
 	{
 		ft_lowercase(argv[i]);
@@ -24,15 +28,12 @@ int main(int argc, char **argv)
 			if (((argv[i][j+1] == '\0') || (argv[i][j+1] == ' ') || (argv[i][j+1] == '\t')) 
 					&& (argv[i][j] >= 'a' && argv[i][j] <= 'z'))
 			{
-				argv[i][j] -= 32;		
-				write(1, &argv[i][j], 1);
-			}
-			else
-			 	write(1, &argv[i][j], 1);
+				argv[i][j] -= 32;
+			}		
+			write(1, &argv[i][j], 1);
 			j++;
 		}
 		write(1, "\n", 1);
 		i++;		
 	}
-	write (1, "\n", 1);
 }
