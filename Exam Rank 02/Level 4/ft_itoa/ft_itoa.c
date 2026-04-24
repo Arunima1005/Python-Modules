@@ -29,7 +29,10 @@ char	*ft_itoa(int nbr)
         return (NULL);
     str[len --]='\0';
     if (n == 0)
+    {
         str[0] = '0';
+        return (str);
+    }
     if (n < 0)
     {
         str[0] = '-';
