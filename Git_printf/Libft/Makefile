@@ -24,19 +24,11 @@ $(NAME): $(OBJ)
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-#SHELL = cmd
-
-#clean:
-#	rm -f $(OBJ)
-
-#fclean: clean
-#	rm -f $(NAME)
-
 clean:
-	del /Q $(OBJ) 2>nul
+	rm -f $(OBJ)
 
 fclean: clean
-	del /Q $(NAME) 2>nul
+	rm -f $(NAME)
 
 re: fclean all
 
