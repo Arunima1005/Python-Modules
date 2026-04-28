@@ -1,11 +1,12 @@
-class Plant():
-    def __init__(self, name: str, height: float, day: int):
+class Plant:
+    def __init__(self, name: str, height: float, age: int):
         self.name = name
         self.height = height
-        self.day = day
-    
+        self.age = age
+
     def show(self) -> None:
-        print(f"{self.name}: {self.height:.1f}cm, {self.day} days old")
+        print(f"{self.name}: {self.height:.1f}cm, {self.age} days old")
+
 
 if __name__ == "__main__":
     print("=== Plant Factory Output ===")
