@@ -6,7 +6,7 @@ def garden_operations(operation_number: int) -> None:
     elif operation_number == 2:
         open("/arunima/file")
     elif operation_number == 3:
-        "hello" + 5
+        "hello" + 5 # type: ignore
     else:
         print("Operation completed successfully")
 
