@@ -4,8 +4,10 @@ if __name__ == "__main__":
     print("=== Player Score Analytics ===")
 
     if len(sys.argv) == 1:
-        print("No scores provided. Usage: python3 "
-              "ft_score_analytics.py <score1> <score2> ...")
+        print(
+            "No scores provided. Usage: python3 "
+            "ft_score_analytics.py <score1> <score2> ..."
+        )
     else:
         score_list = []
         for arg in sys.argv[1:]:
@@ -14,8 +16,10 @@ if __name__ == "__main__":
             except ValueError:
                 print(f"Invalid parameter: '{arg}'")
         if len(score_list) == 0:
-            print("No scores provided. Usage: "
-                  "python3 ft_score_analytics.py <score1> <score2> ...")
+            print(
+                "No scores provided. Usage: "
+                "python3 ft_score_analytics.py <score1> <score2> ..."
+            )
         else:
             print(f"Scores processed: {score_list}")
             print(f"Total players: {len(score_list)}")
