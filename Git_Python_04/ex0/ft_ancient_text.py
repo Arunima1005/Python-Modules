@@ -12,7 +12,9 @@ def main() -> None:
     try:
         file: IO[str] = open(filename, "r")
         print("---")
+        print()
         print(file.read())
+        print()
         print("---")
         file.close()
         print(f"File '{filename}' closed.")
