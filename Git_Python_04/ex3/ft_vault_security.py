@@ -25,7 +25,8 @@ def main() -> None:
     success, content = secure_archive("ancient_fragment.txt")
     print((success, content))
     if success:
-        print("Using 'secure_archive' to write previous content to a new file:")
+        print("Using 'secure_archive' to write "
+              "previous content to a new file:")
         print(secure_archive("new_fragment.txt", "write", content))
 
 
