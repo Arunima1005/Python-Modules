@@ -1,4 +1,3 @@
-
 from alchemy.grimoire import light_spell_record
 
 print("=== Kaboom 0 ===")
