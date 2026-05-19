@@ -1,0 +1,15 @@
+from abc import ABC, abstractmethod
+
+class Creature(ABC):
+    def __init__(self, name: str, creature_type: str) -> None:
+        self.name = name
+        self.creature_type = creature_type
+    
+    @abstractmethod
+    def attack(self):
+        pass
+
+    def describe(self) -> str:
+        return (f"{self.name} is a "
+            f"{self.creature_type} type Creature")
+    
