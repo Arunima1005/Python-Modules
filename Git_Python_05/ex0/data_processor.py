@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+
 class DataProcessor(ABC):
     def __init__(self) -> None:
         self._storage: list[str] = []
@@ -24,6 +25,7 @@ class DataProcessor(ABC):
 
         return (rank, value)
 
+
 class NumericProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
         if isinstance(data, (int, float)):
@@ -33,8 +35,8 @@ class NumericProcessor(DataProcessor):
             return all(isinstance(x, (int, float)) for x in data)
 
         return False
-    
-    def  ingest(self, data: int | float | list[int | float]) -> None:
+
+    def ingest(self, data: int | float | list[int | float]) -> None:
         if not self.validate(data):
             raise ValueError("Improper numeric data")
 
@@ -44,6 +46,7 @@ class NumericProcessor(DataProcessor):
         else:
             self._storage.append(str(data))
 
+
 class TextProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
         if isinstance(data, str):
@@ -51,7 +54,6 @@ class TextProcessor(DataProcessor):
 
         if isinstance(data, list):
             return all(isinstance(x, str) for x in data)
-
         return False
 
     def ingest(self, data: str | list[str]) -> None:
@@ -64,11 +66,17 @@ class TextProcessor(DataProcessor):
         else:
             self._storage.append(data)
 
+
 class LogProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
 
         def valid_log(log: Any) -> bool:
             if not isinstance(log, dict):
+                return False
+
+            required_keys = {"log_level", "log_message"}
+
+            if set(log.keys()) != required_keys:
                 return False
 
             return all(
@@ -83,18 +91,15 @@ class LogProcessor(DataProcessor):
             return all(valid_log(item) for item in data)
 
         return False
-    
-    def ingest(
-        self,
-        data: dict[str, str] | list[dict[str, str]]
-    ) -> None:
+
+    def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
 
         if not self.validate(data):
             raise ValueError("Improper log data")
 
         def format_log(log: dict[str, str]) -> str:
-            level = log.get("log_level", "UNKNOWN")
-            message = log.get("log_message", "")
+            level = log["log_level"]
+            message = log["log_message"]
             return f"{level}: {message}"
 
         if isinstance(data, list):
@@ -103,85 +108,46 @@ class LogProcessor(DataProcessor):
         else:
             self._storage.append(format_log(data))
 
+
 def main() -> None:
 
     print("=== Code Nexus - Data Processor ===")
 
-    # ---------------- NUMERIC ----------------
-
     numeric = NumericProcessor()
-
     print("\nTesting Numeric Processor...")
-
     print(f"Trying to validate input '42': {numeric.validate(42)}")
-    print(
-        f"Trying to validate input 'Hello': "
-        f"{numeric.validate('Hello')}"
-    )
-
-    print(
-        "Test invalid ingestion of string "
-        "'foo' without prior validation:"
-    )
-
+    print(f"Trying to validate input 'Hello': {numeric.validate('Hello')}")
+    print("Test invalid ingestion of string 'foo' without prior validation:")
     try:
         numeric.ingest("foo")  # type: ignore
     except ValueError as e:
         print(f"Got exception: {e}")
-
     print("Processing data: [1, 2, 3, 4, 5]")
-
     numeric.ingest([1, 2, 3, 4, 5])
-
     print("Extracting 3 values...")
-
     for _ in range(3):
         rank, value = numeric.output()
         print(f"Numeric value {rank}: {value}")
 
-    # ---------------- TEXT ----------------
-
     text = TextProcessor()
-
     print("\nTesting Text Processor...")
-
     print(f"Trying to validate input '42': {text.validate(42)}")
-
     print("Processing data: ['Hello', 'Nexus', 'World']")
-
     text.ingest(["Hello", "Nexus", "World"])
-
     print("Extracting 1 value...")
-
     rank, value = text.output()
-
     print(f"Text value {rank}: {value}")
 
-     # ---------------- LOG ----------------
-
     log = LogProcessor()
-
     print("\nTesting Log Processor...")
-
     print(f"Trying to validate input 'Hello': {log.validate('Hello')}")
-
     logs = [
-        {
-            "log_level": "NOTICE",
-            "log_message": "Connection to server"
-        },
-        {
-            "log_level": "ERROR",
-            "log_message": "Unauthorized access!!"
-        }
+        {"log_level": "NOTICE", "log_message": "Connection to server"},
+        {"log_level": "ERROR", "log_message": "Unauthorized access!!"},
     ]
-
     print(f"Processing data: {logs}")
-
     log.ingest(logs)
-
     print("Extracting 2 values...")
-
     for _ in range(2):
         rank, value = log.output()
         print(f"Log entry {rank}: {value}")
