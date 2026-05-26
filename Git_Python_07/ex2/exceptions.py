@@ -1,3 +1,2 @@
-
 class InvalidStrategyError(Exception):
     pass

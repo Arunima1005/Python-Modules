@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 
 from ex0.creature import Creature
@@ -18,10 +17,7 @@ class BattleStrategy(ABC):
         pass
 
     @abstractmethod
-    def is_valid(
-        self,
-        creature: Creature
-    ) -> bool:
+    def is_valid(self, creature: Creature) -> bool:
         pass
 
 
@@ -30,10 +26,7 @@ class NormalStrategy(BattleStrategy):
     def act(self, creature: Creature) -> None:
         print(creature.attack())
 
-    def is_valid(
-        self,
-        creature: Creature
-    ) -> bool:
+    def is_valid(self, creature: Creature) -> bool:
         return True
 
 
@@ -43,22 +36,15 @@ class DefensiveStrategy(BattleStrategy):
 
         if not self.is_valid(creature):
             raise InvalidStrategyError(
-                f"Invalid Creature "
-                f"'{creature.name}' "
-                "for this defensive strategy"
+                f"Invalid Creature " f"'{creature.name}' "
+                f"for this defensive strategy"
             )
+        if isinstance(creature, HealCapability):
+            print(creature.attack())
+            print(creature.heal())
 
-        print(creature.attack())
-        print(creature.heal())
-
-    def is_valid(
-        self,
-        creature: Creature
-    ) -> bool:
-        return isinstance(
-            creature,
-            HealCapability
-        )
+    def is_valid(self, creature: Creature) -> bool:
+        return isinstance(creature, HealCapability)
 
 
 class AggressiveStrategy(BattleStrategy):
@@ -71,16 +57,10 @@ class AggressiveStrategy(BattleStrategy):
                 f"'{creature.name}' "
                 "for this aggressive strategy"
             )
+        if isinstance(creature, TransformCapability):
+            print(creature.transform())
+            print(creature.attack())
+            print(creature.revert())
 
-        print(creature.transform())
-        print(creature.attack())
-        print(creature.revert())
-
-    def is_valid(
-        self,
-        creature: Creature
-    ) -> bool:
-        return isinstance(
-            creature,
-            TransformCapability
-        )
+    def is_valid(self, creature: Creature) -> bool:
+        return isinstance(creature, TransformCapability)

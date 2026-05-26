@@ -1,4 +1,3 @@
-
 from ex0 import FlameFactory, AquaFactory
 
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
@@ -14,14 +13,8 @@ from ex2.strategy import (
 
 from ex2.exceptions import InvalidStrategyError
 
-def battle(
-    opponents: list[
-        tuple[
-            CreatureFactory,
-            BattleStrategy
-        ]
-    ]
-) -> None:
+
+def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
 
     print("*** Tournament ***")
     print(f"{len(opponents)} opponents involved")
@@ -52,6 +45,7 @@ def battle(
                 print("Battle error, aborting tournament:")
                 print(error)
                 return
+
 
 def main() -> None:
 

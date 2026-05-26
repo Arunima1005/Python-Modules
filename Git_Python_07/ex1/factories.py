@@ -8,6 +8,7 @@ from .capabilities import (
     Morphagon,
 )
 
+
 class HealingCreatureFactory(CreatureFactory):
     def create_base(self) -> Creature:
         return Sproutling()

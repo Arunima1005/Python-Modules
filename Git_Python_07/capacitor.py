@@ -10,23 +10,21 @@ from ex1.capabilities import (
 
 
 def test_healing() -> None:
-    print(
-        "Testing Creature with healing capability"
-    )
+    print("Testing Creature with healing capability")
 
     factory = HealingCreatureFactory()
 
     base = factory.create_base()
     evolved = factory.create_evolved()
 
-    print("base:")
+    print(" base:")
     print(base.describe())
     print(base.attack())
 
     if isinstance(base, HealCapability):
         print(base.heal())
 
-    print("evolved:")
+    print(" evolved:")
     print(evolved.describe())
     print(evolved.attack())
 
@@ -35,16 +33,14 @@ def test_healing() -> None:
 
 
 def test_transform() -> None:
-    print(
-        "Testing Creature with transform capability"
-    )
+    print("Testing Creature with transform capability")
 
     factory = TransformCreatureFactory()
 
     base = factory.create_base()
     evolved = factory.create_evolved()
 
-    print("base:")
+    print(" base:")
     print(base.describe())
     print(base.attack())
 
@@ -53,7 +49,7 @@ def test_transform() -> None:
         print(base.attack())
         print(base.revert())
 
-    print("evolved:")
+    print(" evolved:")
     print(evolved.describe())
     print(evolved.attack())
 
