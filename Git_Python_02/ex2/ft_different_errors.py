@@ -4,7 +4,7 @@ def garden_operations(operation_number: int) -> None:
     elif operation_number == 1:
         10 / 0
     elif operation_number == 2:
-        open("/arunima/file")
+        open("/non/existent/file/file")
     elif operation_number == 3:
         "hello" + 5  # type: ignore
     else:
