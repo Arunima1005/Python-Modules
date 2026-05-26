@@ -6,7 +6,7 @@
 #    By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 16:17:56 by archowdh          #+#    #+#              #
-#    Updated: 2026/03/24 17:15:47 by archowdh         ###   ########.fr        #
+#    Updated: 2026/04/08 14:42:08 by archowdh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT_DIR = libft
+LIBFT_DIR = Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)

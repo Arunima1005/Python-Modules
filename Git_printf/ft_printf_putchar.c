@@ -6,14 +6,14 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:30:11 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/24 16:33:10 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/04/02 12:32:29 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf_putchar(char c)
+int	ft_printf_putchar(char c)
 {
-    ft_putchar_fd(c,1);
+	ft_putchar_fd(c, 1);
 	return (1);
 }

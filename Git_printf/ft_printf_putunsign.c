@@ -6,13 +6,13 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:22:27 by archowdh          #+#    #+#             */
-/*   Updated: 2026/03/24 16:33:03 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/04/02 12:45:35 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf_putunsign(unsigned int num)
+int	ft_printf_putunsign(unsigned int num)
 {
 	int	count;
 
