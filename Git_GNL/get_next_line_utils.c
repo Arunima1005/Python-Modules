@@ -6,7 +6,7 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 11:51:29 by archowdh          #+#    #+#             */
-/*   Updated: 2026/04/14 20:17:22 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/04/15 12:16:28 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*concat;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	if (!s1)
 		return (ft_strndup(s2, ft_strlen(s2)));
@@ -64,7 +64,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	concat[i + j] = '\0';
-	return (concat);
+	return (free(s1), s1 = NULL, concat);
 }
 
 char	*ft_strndup(const char *s, size_t n)

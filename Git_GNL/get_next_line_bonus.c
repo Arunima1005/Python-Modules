@@ -6,15 +6,15 @@
 /*   By: archowdh <archowdh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 11:51:17 by archowdh          #+#    #+#             */
-/*   Updated: 2026/04/14 20:32:09 by archowdh         ###   ########.fr       */
+/*   Updated: 2026/04/15 15:00:51 by archowdh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static char *ft_get_line(char *buffer)
+static char	*ft_get_line(char *buffer)
 {
-	int	len;
+	int		len;
 	char	*line;
 
 	if (!*buffer)
@@ -27,7 +27,7 @@ static char *ft_get_line(char *buffer)
 	return (line);
 }
 
-static char *ft_new_stash(char *stash)
+static char	*ft_new_stash(char *stash)
 {
 	char	*new_stash;
 	char	*newline_ptr;
@@ -45,10 +45,10 @@ static char *ft_new_stash(char *stash)
 	free(stash);
 	return (new_stash);
 }
+
 static char	*ft_read_file(int fd, char *stash)
 {
 	char	*new_stash;
-	char	*tmp;
 	int		bytes;
 
 	new_stash = malloc(BUFFER_SIZE + 1);
@@ -62,9 +62,7 @@ static char	*ft_read_file(int fd, char *stash)
 		if (bytes == 0)
 			break ;
 		new_stash[bytes] = '\0';
-		tmp = ft_strjoin(stash, new_stash);
-		free(stash);
-		stash = tmp;
+		stash = ft_strjoin(stash, new_stash);
 		if (!stash)
 			return (free(new_stash), NULL);
 		if (ft_strchr(stash, '\n'))
@@ -73,7 +71,8 @@ static char	*ft_read_file(int fd, char *stash)
 	free(new_stash);
 	return (stash);
 }
-char *get_next_line(int fd)
+
+char	*get_next_line(int fd)
 {
 	static char	*stash[1024];
 	char		*line;
