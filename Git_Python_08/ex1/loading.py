@@ -111,3 +111,5 @@ if __name__ == "__main__":
 # poetry install
 
 # poetry run python loading.py
+
+#poetry env remove python
