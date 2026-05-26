@@ -6,4 +6,4 @@ def ft_harvest_total() -> None:
     total += day
     day = int(input("Day 3 harvest: "))
     total += day
-    print(f'Total harvest: {total}')
+    print(f"Total harvest: {total}")

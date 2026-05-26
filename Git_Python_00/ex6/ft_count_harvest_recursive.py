@@ -7,4 +7,5 @@ def ft_count_harvest_recursive() -> None:
             return
         print(f"Day {i}")
         count(i + 1, day)
+
     count(1, day)
