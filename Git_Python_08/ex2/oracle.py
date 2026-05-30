@@ -23,6 +23,9 @@ def display_configuration() -> None:
     else:
         print("Database: Connected to production instance")
 
+    if database_url:
+        print(f"Database URL: {database_url}")
+
     if api_key:
         print("API Access: Authenticated")
     else:
