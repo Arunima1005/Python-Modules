@@ -1,0 +1,13 @@
+import os
+import sys
+
+from dotenv import load_dotenv
+
+
+REQUIRED_VARIABLES = [
+    "MATRIX_MODE",
+    "DATABASE_URL",
+    "API_KEY",
+    "LOG_LEVEL",
+    "ZION_ENDPOINT",
+]
