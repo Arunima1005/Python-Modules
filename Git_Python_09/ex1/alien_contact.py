@@ -84,7 +84,7 @@ def main() -> None:
             witness_count=1,
             is_verified=False,
         )
-        print(invalid_contact)
+        display_contact(invalid_contact)
     except ValidationError as error:
         # print(error.errors()[0]["msg"].split(',')[1])
         for err in error.errors():
