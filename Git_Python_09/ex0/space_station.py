@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel,Field, ValidationError
+from pydantic import BaseModel, Field, ValidationError
+
 
 class SpaceStation(BaseModel):
     station_id: str = Field(min_length=3, max_length=10)
@@ -16,6 +17,7 @@ class SpaceStation(BaseModel):
     is_operational: bool = True
 
     notes: Optional[str] = Field(default=None, max_length=200)
+
 
 def display_station(station: SpaceStation) -> None:
     print("Space Station Data Validation")
@@ -36,6 +38,7 @@ def display_station(station: SpaceStation) -> None:
     #     print(f"Notes: {station.notes}")
     print()
     print("=" * 40)
+
 
 def main() -> None:
     try:
@@ -64,13 +67,14 @@ def main() -> None:
             crew_size=25,
             power_level=120.0,
             oxygen_level=50.0,
-            last_maintenance="2025-05-30T10:30:00"
+            last_maintenance="2025-05-30T10:30:00",
         )
 
         print(invalid_station)
 
     except ValidationError as error:
         print(error.errors()[0]["msg"])
+
 
 if __name__ == "__main__":
     main()
