@@ -32,13 +32,14 @@ class SpaceMission(BaseModel):
     budget_millions: float = Field(ge=1.0, le=10000.0)
 
     @model_validator(mode="after")
-    def validation_check(self)->None:
+    def validation_check(self) -> None:
         errors = []
-        if not self.mission_id.startswith('M'):
+        if not self.mission_id.startswith("M"):
             errors.append("Mission ID must start with 'M'")
 
-        captain_commander = any(crew_member.rank in (Rank.captain, Rank.commander)
-            for crew_member in self.crew 
+        captain_commander = any(
+            crew_member.rank in (Rank.captain, Rank.commander)
+            for crew_member in self.crew
         )
 
         if not captain_commander:
@@ -64,7 +65,8 @@ class SpaceMission(BaseModel):
                 raise ValueError("\n".join(errors))
 
         return self
-    
+
+
 def display_mission(mission: SpaceMission) -> None:
 
     print("Space Mission Crew Validation")
@@ -80,8 +82,7 @@ def display_mission(mission: SpaceMission) -> None:
     for member in mission.crew:
 
         print(
-            f"- {member.name} "
-            f"({member.rank.value}) - "
+            f"- {member.name} " f"({member.rank.value}) - "
             f"{member.specialization}"
         )
 
@@ -106,27 +107,25 @@ def main() -> None:
                     rank=Rank.commander,
                     age=45,
                     specialization="Mission Command",
-                    years_experience=15
+                    years_experience=15,
                 ),
-
                 CrewMember(
                     member_id="CM002",
                     name="John Smith",
                     rank=Rank.lieutenant,
                     age=38,
                     specialization="Navigation",
-                    years_experience=8
+                    years_experience=8,
                 ),
-
                 CrewMember(
                     member_id="CM003",
                     name="Alice Johnson",
                     rank=Rank.officer,
                     age=32,
                     specialization="Engineering",
-                    years_experience=6
-                )
-            ]
+                    years_experience=6,
+                ),
+            ],
         )
 
         display_mission(valid_mission)
@@ -153,18 +152,17 @@ def main() -> None:
                     age=30,
                     specialization="Engineering",
                     years_experience=2,
-                    is_active=False
+                    is_active=False,
                 ),
-
                 CrewMember(
                     member_id="CM102",
                     name="Emma",
                     rank=Rank.lieutenant,
                     age=29,
                     specialization="Science",
-                    years_experience=1
-                )
-            ]
+                    years_experience=1,
+                ),
+            ],
         )
 
         display_mission(invalid_mission)
@@ -174,7 +172,7 @@ def main() -> None:
         for err in error.errors():
             message = err["msg"]
             if message.startswith("Value error, "):
-                message = message.replace("Value error, ","")
+                message = message.replace("Value error, ", "")
             print(f"{message}")
 
 
