@@ -43,7 +43,8 @@ class SpaceMission(BaseModel):
         )
 
         if not captain_commander:
-            errors.append("Must have at least one Commander or Captain")
+            errors.append
+            ("Mission must have at least one Commander or Captain")
 
         if self.duration_days > 365:
 
@@ -56,13 +57,13 @@ class SpaceMission(BaseModel):
             if len(experienced_crew) < len(self.crew) / 2:
                 errors.append("Long missions need 50% experienced crew")
 
-            for member in self.crew:
-                if not member.is_active:
-                    errors.append("All crew members must be active")
-                    break
+        for member in self.crew:
+            if not member.is_active:
+                errors.append("All crew members must be active")
+                break
 
-            if errors:
-                raise ValueError("\n".join(errors))
+        if errors:
+            raise ValueError("\n".join(errors))
 
         return self
 
@@ -82,7 +83,8 @@ def display_mission(mission: SpaceMission) -> None:
     for member in mission.crew:
 
         print(
-            f"- {member.name} " f"({member.rank.value}) - "
+            f"- {member.name} "
+            f"({member.rank.value}) - "
             f"{member.specialization}"
         )
 
@@ -97,7 +99,7 @@ def main() -> None:
             mission_id="M2026_MARS",
             mission_name="Mars Colony Establishment",
             destination="Mars",
-            launch_date="2026-08-15T09:00:00",
+            launch_date=datetime.fromisoformat("2026-06-05"),
             duration_days=900,
             budget_millions=2500.0,
             crew=[
@@ -141,7 +143,7 @@ def main() -> None:
             mission_id="X2026",
             mission_name="Deep Space Probe",
             destination="Jupiter",
-            launch_date="2026-09-01T12:00:00",
+            launch_date=datetime.fromisoformat("2026-06-05"),
             duration_days=1000,
             budget_millions=5000.0,
             crew=[

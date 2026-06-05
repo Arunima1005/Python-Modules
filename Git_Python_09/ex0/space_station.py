@@ -49,7 +49,7 @@ def main() -> None:
             crew_size=6,
             power_level=85.5,
             oxygen_level=92.3,
-            last_maintenance="2025-05-30T10:30:00",
+            last_maintenance=datetime.fromisoformat("2026-06-05"),
             # notes="Main orbital research station"
         )
         display_station(station)
@@ -67,7 +67,7 @@ def main() -> None:
             crew_size=25,
             power_level=120.0,
             oxygen_level=50.0,
-            last_maintenance="2025-05-30T10:30:00",
+            last_maintenance=datetime.fromisoformat("2026-06-05"),
         )
 
         print(invalid_station)
