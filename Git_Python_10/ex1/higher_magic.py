@@ -39,6 +39,10 @@ def spell_sequence(spells: list[Callable]) -> Callable:
     return wrapper
 
 
+def strong_spell(target: str, power: int) -> bool:
+    return power >= 40
+
+
 if __name__ == "__main__":
     print("Testing spell combiner...")
     combined_spell = spell_combiner(fireball, heal)
@@ -48,10 +52,6 @@ if __name__ == "__main__":
     mega_fireball = power_amplifier(fireball, 3)
     print(mega_fireball("Ogre", 20))
     print("\nTesting conditional caster...")
-
-    def strong_spell(target: str, power: int) -> bool:
-        return power >= 40
-
     safe_spell = conditional_caster(strong_spell, fireball)
     print(safe_spell("Goblin", 20))
     print(safe_spell("Goblin", 60))
