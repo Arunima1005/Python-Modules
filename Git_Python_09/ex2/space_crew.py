@@ -32,7 +32,7 @@ class SpaceMission(BaseModel):
     budget_millions: float = Field(ge=1.0, le=10000.0)
 
     @model_validator(mode="after")
-    def validation_check(self):
+    def validation_check(self) -> "SpaceMission":
         errors = []
         if not self.mission_id.startswith("M"):
             errors.append("Mission ID must start with 'M'")
@@ -43,17 +43,16 @@ class SpaceMission(BaseModel):
         )
 
         if not captain_commander:
-            errors.append
-            ("Mission must have at least one Commander or Captain")
+            errors.append(
+                "Mission must have at least one Commander or Captain"
+                )
 
         if self.duration_days > 365:
-
             experienced_crew = [
                 crew_member
                 for crew_member in self.crew
                 if crew_member.years_experience >= 5
             ]
-
             if len(experienced_crew) < len(self.crew) / 2:
                 errors.append("Long missions need 50% experienced crew")
 
@@ -140,7 +139,7 @@ def main() -> None:
     try:
 
         invalid_mission = SpaceMission(
-            mission_id="X2026",
+            mission_id="MX2026",
             mission_name="Deep Space Probe",
             destination="Jupiter",
             launch_date=datetime.fromisoformat("2026-06-05"),
@@ -154,7 +153,7 @@ def main() -> None:
                     age=30,
                     specialization="Engineering",
                     years_experience=2,
-                    is_active=False,
+                    # is_active=True,
                 ),
                 CrewMember(
                     member_id="CM102",
@@ -162,7 +161,7 @@ def main() -> None:
                     rank=Rank.lieutenant,
                     age=29,
                     specialization="Science",
-                    years_experience=1,
+                    years_experience=6,
                 ),
             ],
         )
