@@ -9,22 +9,22 @@ def heal(target: str, power: int) -> str:
     return f"Heal restores {target} for {power} HP"
 
 
-def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
-    def wrapper(target: str, power: int):
+def spell_combiner(spell1: Callable[[str, int], str], spell2: Callable[[str, int], str]) -> Callable[[str, int], tuple[str, str]]:
+    def wrapper(target: str, power: int) -> tuple[str, str]:
         return (spell1(target, power), spell2(target, power))
 
     return wrapper
 
 
-def power_amplifier(base_spell: Callable, multiplier: int) -> Callable:
-    def wrapper(target: str, power: int):
+def power_amplifier(base_spell: Callable[[str, int], str], multiplier: int) -> Callable[[str, int], str]:
+    def wrapper(target: str, power: int) -> str:
         return base_spell(target, power * multiplier)
 
     return wrapper
 
 
-def conditional_caster(condition: Callable, spell: Callable) -> Callable:
-    def wrapper(target: str, power: int):
+def conditional_caster(condition: Callable[[str, int], bool], spell: Callable[[str, int], str]) -> Callable[[str, int], str]:
+    def wrapper(target: str, power: int) -> str:
         if condition(target, power):
             return spell(target, power)
         return "Spell fizzled"
@@ -32,8 +32,8 @@ def conditional_caster(condition: Callable, spell: Callable) -> Callable:
     return wrapper
 
 
-def spell_sequence(spells: list[Callable]) -> Callable:
-    def wrapper(target: str, power: int):
+def spell_sequence(spells: list[Callable[[str, int], str]]) -> Callable[[str, int], list[str]]:
+    def wrapper(target: str, power: int) -> list[str]:
         return [spell(target, power) for spell in spells]
 
     return wrapper
