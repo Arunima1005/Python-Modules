@@ -25,7 +25,7 @@ def fireball_spell() -> str:
 
 
 def power_validator(min_power: int) -> Callable:
-    def power_check(func: Callable[..., str]) -> Callable[..., str]:
+    def decorator(func: Callable[..., str]) -> Callable[..., str]:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             power = args[0]
@@ -36,7 +36,7 @@ def power_validator(min_power: int) -> Callable:
 
         return wrapper
 
-    return power_check
+    return decorator
 
 
 @power_validator(10)
@@ -45,7 +45,18 @@ def power_light(power: int) -> str:
 
 
 def retry_spell(max_attempts: int) -> Callable:
-    pass
+    def decorator(func : Callable[..., str]) -> Callable[..., str]:
+        @wraps(func)
+        def wrapper(*args: Any, **kwargs: Any) -> str:
+            for attempt in range(1, max_attempts + 1):
+                try:
+                    return func(*args, **kwargs)
+                except:
+                    print(f"Spell failed, retrying... (attempt {attempt}/{max_attempts})")
+                return f"Spell casting failed after max_attempts attempts"
+            return wrapper
+        return decorator
+
 
 
 class MageGuild:
